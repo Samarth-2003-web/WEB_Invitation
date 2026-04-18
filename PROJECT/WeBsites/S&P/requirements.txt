@@ -1,0 +1,49 @@
+# Engagement Website - Requirements
+
+## Browser Requirements
+- Modern Web Browser (Chrome, Firefox, Safari, Edge)
+- HTTPS support for Google Maps embed
+- JavaScript enabled
+
+## No Backend Dependencies
+This is a static HTML/CSS/JavaScript website that requires no server-side dependencies.
+
+## Features
+- Responsive Design
+- Smooth Scrolling
+- Animated Cursor
+- Starfield Animation
+- 3D Ring Rotation
+- Live Countdown Timer
+- Google Maps Embed
+- Mobile Optimized
+
+## Files Included
+- engagement-theme-modern-cyan.html - Original design with modern cyan theme
+- engagement-theme-glassmorphism-parallax.html - Enhanced version with glassmorphism effects and parallax scrolling
+
+## How to Use
+1. Open any HTML file in a web browser
+2. No installation or build process required
+3. All features work offline (except Google Maps)
+
+## Browser Compatibility
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+- Mobile browsers (iOS Safari, Chrome Android)
+
+## Internet Connection
+- Required: For Google Maps embed in Venue section
+- Optional: For Google Fonts
+
+## Customization
+Edit the following in the HTML file:
+- Couple names: Search for "Saurabh P Shetty & Poornima D Shetty"
+- Date: Change "14 May 2026"
+- Venue: Search for "K1 Hotel"
+- Colors: Modify CSS variables in :root section
+  - --gold: #00d4ff (cyan)
+  - --rose: #ff006e (pink)
+  - --deep: #0a0e27 (dark background)
