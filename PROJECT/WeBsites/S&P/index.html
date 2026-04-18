@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurabh P Shetty & Poornima D Shetty — Engaged</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #00d4ff;
+    --gold-light: #40ddff;
+    --gold-pale: #80ecff;
+    --deep: #0a0e27;
+    --rose: #ff006e;
+    --rose-light: #ff4d8f;
+    --cream: #e0e0e0;
+    --off-white: #f5f5f5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--deep);
+    color: var(--cream);
+    font-family: 'Jost', sans-serif;
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  .cursor-ring { width: 28px; height: 28px; border: 1px solid rgba(0,212,255,0.6); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transition: none; }
+
+  #hero { position: relative; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; background: radial-gradient(ellipse at 50% 60%, #1a2a4a 0%, #0a0e27 70%); }
+  #starfield { position: absolute; inset: 0; z-index: 0; }
+  .petal { position: absolute; width: 14px; height: 20px; background: radial-gradient(ellipse at 40% 30%, #ff4d8f, #ff006e); border-radius: 60% 40% 60% 40% / 60% 60% 40% 40%; opacity: 0; animation: fall linear infinite; z-index: 1; filter: blur(0.5px); }
+  @keyframes fall {
+    0%   { transform: translateY(-40px) rotate(0deg) rotateX(0deg); opacity: 0; }
+    10%  { opacity: 0.7; }
+    90%  { opacity: 0.5; }
+    100% { transform: translateY(110vh) rotate(720deg) rotateX(180deg); opacity: 0; }
+  }
+
+  .hero-content { position: relative; z-index: 2; text-align: center; padding: 0 1.5rem; }
+  .hero-tag { font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.45em; color: var(--gold); text-transform: uppercase; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s 0.3s forwards; }
+  .hero-names { font-family: 'Cormorant Garamond', serif; font-size: clamp(3.5rem, 10vw, 8rem); font-weight: 300; line-height: 1; color: var(--cream); opacity: 0; animation: fadeUp 1.2s 0.6s forwards; text-shadow: 0 0 80px rgba(0,212,255,0.3); }
+  .hero-names em { color: var(--rose-light); font-style: italic; }
+  .hero-amp { font-family: 'Cormorant Garamond', serif; font-size: clamp(2rem, 5vw, 4rem); color: var(--rose-light); font-style: italic; display: block; margin: 0.2em 0; }
+  .hero-divider { display: flex; align-items: center; gap: 1.2rem; justify-content: center; margin: 2.5rem auto; opacity: 0; animation: fadeUp 1s 1s forwards; }
+  .hero-divider span { height: 1px; width: 80px; background: linear-gradient(90deg, transparent, var(--gold)); }
+  .hero-divider span:last-child { background: linear-gradient(90deg, var(--gold), transparent); }
+  .hero-divider .diamond { width: 8px; height: 8px; background: var(--gold); transform: rotate(45deg); animation: pulse 2s infinite; }
+  @keyframes pulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(0,212,255,0.5); }
+    50%      { box-shadow: 0 0 0 8px rgba(0,212,255,0); }
+  }
+
+  .hero-date { font-family: 'Cinzel', serif; font-size: clamp(0.9rem, 2.5vw, 1.2rem); letter-spacing: 0.3em; color: var(--gold-pale); opacity: 0; animation: fadeUp 1s 1.2s forwards; }
+  .scroll-hint { position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%); z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 0.5rem; opacity: 0; animation: fadeUp 1s 2s forwards; }
+  .scroll-hint p { font-size: 0.6rem; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; }
+  .scroll-line { width: 1px; height: 50px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollLine 2s infinite; }
+  @keyframes scrollLine {
+    0%   { transform: scaleY(0); transform-origin: top; }
+    50%  { transform: scaleY(1); transform-origin: top; }
+    51%  { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .ring-3d-container { position: absolute; top: 50%; right: 8%; transform: translateY(-50%); z-index: 2; opacity: 0; animation: fadeUp 1.5s 1.5s forwards; }
+  .ring-scene { width: 140px; height: 140px; perspective: 800px; }
+  .ring-wrap { width: 100%; height: 100%; position: relative; transform-style: preserve-3d; animation: spinRing 12s linear infinite; }
+  @keyframes spinRing {
+    from { transform: rotateX(60deg) rotateZ(0deg); }
+    to   { transform: rotateX(60deg) rotateZ(360deg); }
+  }
+  .ring-svg { width: 100%; height: 100%; }
+
+  section { position: relative; padding: 7rem 2rem; overflow: hidden; }
+  .section-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .section-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.5em; color: var(--gold); text-transform: uppercase; margin-bottom: 1.2rem; display: block; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.8rem); font-weight: 300; line-height: 1.15; margin-bottom: 1.5rem; color: var(--cream); }
+
+  #story { background: linear-gradient(180deg, #0a0e27 0%, #1a2a4a 50%, #0a0e27 100%); }
+  .story-text { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-style: italic; font-weight: 300; line-height: 1.8; color: var(--cream); max-width: 680px; margin: 0 auto 2.5rem; position: relative; z-index: 1; }
+
+  #details { background: var(--deep); }
+  .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.5rem; margin-top: 3.5rem; }
+  .card { background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(255,6,110,0.05)); border: 1px solid rgba(0,212,255,0.2); border-radius: 2px; padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: transform 0.4s cubic-bezier(.16,1,.3,1), border-color 0.3s; }
+  .card:hover { transform: translateY(-8px); border-color: rgba(0,212,255,0.5); }
+  .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+  .card-icon { font-size: 2rem; margin-bottom: 1.2rem; display: block; }
+  .card-label { font-family: 'Cinzel', serif; font-size: 0.6rem; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; margin-bottom: 0.8rem; display: block; }
+  .card-value { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: var(--cream); line-height: 1.3; }
+  .card-sub { font-family: 'Jost', sans-serif; font-size: 0.8rem; font-weight: 200; color: var(--rose-light); margin-top: 0.4rem; letter-spacing: 0.05em; }
+
+  #countdown { background: linear-gradient(135deg, #1a2a4a, #0a0e27); border-top: 1px solid rgba(0,212,255,0.15); border-bottom: 1px solid rgba(0,212,255,0.15); }
+  .countdown-grid { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-top: 3rem; }
+  .count-box { text-align: center; min-width: 100px; background: rgba(0,212,255,0.06); border: 1px solid rgba(0,212,255,0.2); padding: 2rem 1.5rem 1.5rem; position: relative; transition: transform 0.3s; }
+  .count-box:hover { transform: scale(1.05); }
+  .count-num { font-family: 'Cinzel', serif; font-size: clamp(2.5rem, 6vw, 4rem); color: var(--gold-light); display: block; line-height: 1; }
+  .count-label { font-family: 'Jost', sans-serif; font-size: 0.6rem; letter-spacing: 0.35em; color: var(--gold); text-transform: uppercase; margin-top: 0.6rem; display: block; }
+
+  #venue { background: var(--deep); padding-bottom: 5rem; }
+  .map-container { margin-top: 3rem; border: 1px solid rgba(0,212,255,0.25); position: relative; overflow: hidden; border-radius: 2px; }
+  .map-container::before { content: ''; position: absolute; inset: 0; z-index: 1; pointer-events: none; box-shadow: inset 0 0 60px rgba(10,14,39,0.6); border: 2px solid rgba(0,212,255,0.15); }
+  .map-container iframe { width: 100%; height: 420px; display: block; border-radius: 2px; }
+  .venue-address { margin-top: 1.5rem; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-style: italic; color: var(--gold-pale); text-align: center; }
+
+  footer { background: #050810; padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(0,212,255,0.1); }
+  .footer-names { font-family: 'Cormorant Garamond', serif; font-size: 2.2rem; font-style: italic; color: var(--gold-light); margin-bottom: 0.8rem; }
+  .footer-msg { font-family: 'Jost', sans-serif; font-size: 0.75rem; font-weight: 200; letter-spacing: 0.3em; color: var(--gold); text-transform: uppercase; }
+
+  .orb { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0; }
+  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(.16,1,.3,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .ring-3d-container { display: none; }
+    .hero-names { font-size: 3rem; }
+  }
+</style>
+</head>
+<body>
+<div class="cursor-ring" id="cursorRing"></div>
+<section id="hero">
+  <canvas id="starfield"></canvas>
+  <div id="petals"></div>
+  <div class="orb" style="width:500px;height:500px;background:rgba(255,6,110,0.12);top:30%;left:10%;"></div>
+  <div class="orb" style="width:400px;height:400px;background:rgba(0,212,255,0.07);top:10%;right:5%;"></div>
+  <div class="ring-3d-container">
+    <div class="ring-scene">
+      <div class="ring-wrap">
+        <svg class="ring-svg" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <radialGradient id="rg1" cx="50%" cy="30%">
+              <stop offset="0%" stop-color="#80ecff"/>
+              <stop offset="40%" stop-color="#00d4ff"/>
+              <stop offset="100%" stop-color="#0080aa"/>
+            </radialGradient>
+            <radialGradient id="rg2" cx="50%" cy="50%">
+              <stop offset="0%" stop-color="#ff99bb"/>
+              <stop offset="50%" stop-color="#ff4d8f"/>
+              <stop offset="100%" stop-color="#cc0055"/>
+            </radialGradient>
+          </defs>
+          <ellipse cx="70" cy="70" rx="58" ry="20" fill="none" stroke="url(#rg1)" stroke-width="14" opacity="0.95"/>
+          <ellipse cx="70" cy="70" rx="58" ry="20" fill="none" stroke="rgba(255,240,200,0.2)" stroke-width="2"/>
+          <g transform="translate(70,42)">
+            <polygon points="0,-18 14,0 0,12 -14,0" fill="url(#rg2)" opacity="0.95"/>
+            <polygon points="0,-18 14,0 0,-4" fill="rgba(255,200,210,0.6)"/>
+            <polygon points="0,-18 -14,0 0,-4" fill="rgba(255,230,235,0.4)"/>
+            <polygon points="0,12 14,0 0,-4" fill="rgba(100,0,20,0.5)"/>
+            <polygon points="0,12 -14,0 0,-4" fill="rgba(140,0,30,0.4)"/>
+            <g opacity="0.9">
+              <line x1="-24" y1="-24" x2="-18" y2="-18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <line x1="24" y1="-24" x2="18" y2="-18" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+              <circle cx="-24" cy="-24" r="2" fill="white"/>
+              <circle cx="24" cy="-24" r="2" fill="white"/>
+            </g>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="hero-content">
+    <span class="hero-tag">✦ An Engagement Celebration ✦</span>
+    <div class="hero-names">Saurabh P Shetty<br><span class="hero-amp">&amp;</span><em>Poornima D Shetty</em></div>
+    <div class="hero-divider"><span></span><div class="diamond"></div><span></span></div>
+    <div class="hero-date">14 May 2026</div>
+  </div>
+  <div class="scroll-hint"><p>Scroll</p><div class="scroll-line"></div></div>
+</section>
+<section id="story">
+  <div class="section-inner">
+    <span class="section-label reveal">Their Story</span>
+    <h2 class="section-title reveal" style="transition-delay:0.1s">Two hearts, one beautiful beginning</h2>
+    <p class="story-text reveal" style="transition-delay:0.2s">We are delighted to announce the engagement of Saurabh P Shetty and Poornima D Shetty. May their love continue to bloom with each passing day, bringing joy, happiness, and endless blessings to their lives. We seek the blessings of family, friends, and all well-wishers as they embark on this beautiful chapter of their journey together.</p>
+    <div class="hero-divider reveal" style="transition-delay:0.3s"><span></span><div class="diamond"></div><span></span></div>
+  </div>
+</section>
+<section id="details">
+  <div class="orb" style="width:600px;height:300px;background:rgba(0,212,255,0.05);top:50%;left:50%;transform:translate(-50%,-50%);"></div>
+  <div class="section-inner">
+    <span class="section-label reveal">Event Details</span>
+    <h2 class="section-title reveal" style="transition-delay:0.1s">Save the Date</h2>
+    <div class="cards-grid">
+      <div class="card reveal" style="transition-delay:0.15s"><span class="card-icon">💍</span><span class="card-label">The Couple</span><div class="card-value">Saurabh P Shetty<br>&amp; Poornima D Shetty</div></div>
+      <div class="card reveal" style="transition-delay:0.25s"><span class="card-icon">📅</span><span class="card-label">Date</span><div class="card-value">14 May 2026</div><div class="card-sub">Thursday • Shubh Din</div></div>
+      <div class="card reveal" style="transition-delay:0.35s"><span class="card-icon">📍</span><span class="card-label">Venue</span><div class="card-value">K1 Hotel</div><div class="card-sub">Kapu, Karnataka, India</div></div>
+    </div>
+  </div>
+</section>
+<section id="countdown">
+  <div class="section-inner">
+    <span class="section-label reveal">Counting Down</span>
+    <h2 class="section-title reveal" style="transition-delay:0.1s">Until They Say Yes</h2>
+    <div class="countdown-grid reveal" style="transition-delay:0.2s">
+      <div class="count-box"><span class="count-num" id="cd-days">--</span><span class="count-label">Days</span></div>
+      <div class="count-box"><span class="count-num" id="cd-hours">--</span><span class="count-label">Hours</span></div>
+      <div class="count-box"><span class="count-num" id="cd-minutes">--</span><span class="count-label">Minutes</span></div>
+      <div class="count-box"><span class="count-num" id="cd-seconds">--</span><span class="count-label">Seconds</span></div>
+    </div>
+  </div>
+</section>
+<section id="venue">
+  <div class="section-inner">
+    <span class="section-label reveal">Find Us</span>
+    <h2 class="section-title reveal" style="transition-delay:0.1s">Venue Location</h2>
+    <div class="map-container reveal" style="transition-delay:0.2s">
+      <iframe src="https://www.google.com/maps/embed?pb=!4v1776436819708!6m8!1m7!1spGq5Qv88XL1SmtPjt7cFfA!2m2!1d13.22557248419374!2d74.74851673352126!3f92.56421380805764!4f-2.228878671924093!5f0.7820865974627469" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="venue-address reveal" style="transition-delay:0.3s">✦ K1 Hotel, Kapu, Udupi District, Karnataka, India ✦</p>
+  </div>
+</section>
+<footer>
+  <div class="footer-names">Saurabh P Shetty &amp; Poornima D Shetty</div>
+  <p class="footer-msg">14 May 2026 · Kapu, Karnataka · Together Forever</p>
+  <div class="hero-divider" style="margin-top:1.8rem;opacity:0.5;"><span></span><div class="diamond" style="animation:none;"></div><span></span></div>
+  <p style="margin-top:1.5rem;font-size:0.65rem;color:rgba(0,212,255,0.4);letter-spacing:0.2em;">WITH LOVE ✦ FAMILY &amp; FRIENDS</p>
+</footer>
+<script>
+const ring = document.getElementById('cursorRing');
+let mx = 0, my = 0;
+document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; ring.style.transform = `translate(${mx - 14}px, ${my - 14}px)`; });
+const canvas = document.getElementById('starfield');
+const ctx = canvas.getContext('2d');
+let stars = [];
+function resizeCanvas() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  stars = Array.from({length: 180}, () => ({x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 1.5 + 0.2, a: Math.random(), speed: Math.random() * 0.008 + 0.003, drift: (Math.random() - 0.5) * 0.2}));
+}
+resizeCanvas();
+window.addEventListener('resize', resizeCanvas);
+function drawStars(t) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  stars.forEach(s => {
+    s.a += s.speed;
+    const alpha = 0.3 + 0.6 * Math.abs(Math.sin(s.a));
+    ctx.beginPath();
+    ctx.arc(s.x + Math.sin(s.a * 0.5) * s.drift * 10, s.y, s.r, 0, Math.PI * 2);
+    ctx.fillStyle = `rgba(224,224,224,${alpha})`;
+    ctx.fill();
+  });
+  requestAnimationFrame(drawStars);
+}
+requestAnimationFrame(drawStars);
+const petalsContainer = document.getElementById('petals');
+for (let i = 0; i < 22; i++) {
+  const p = document.createElement('div');
+  p.className = 'petal';
+  p.style.left = Math.random() * 100 + 'vw';
+  p.style.top = '-30px';
+  p.style.animationDuration = (Math.random() * 8 + 6) + 's';
+  p.style.animationDelay = (Math.random() * 10) + 's';
+  p.style.transform = `scale(${Math.random() * 0.8 + 0.5}) rotate(${Math.random() * 360}deg)`;
+  p.style.opacity = '0';
+  petalsContainer.appendChild(p);
+}
+const target = new Date('2026-05-14T09:00:00').getTime();
+function updateCountdown() {
+  const now = Date.now();
+  const diff = target - now;
+  if (diff <= 0) {
+    document.getElementById('cd-days').textContent = '00';
+    document.getElementById('cd-hours').textContent = '00';
+    document.getElementById('cd-minutes').textContent = '00';
+    document.getElementById('cd-seconds').textContent = '00';
+    return;
+  }
+  const d = Math.floor(diff / 86400000);
+  const h = Math.floor((diff % 86400000) / 3600000);
+  const m = Math.floor((diff % 3600000) / 60000);
+  const s = Math.floor((diff % 60000) / 1000);
+  document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-minutes').textContent = String(m).padStart(2,'0');
+  document.getElementById('cd-seconds').textContent = String(s).padStart(2,'0');
+}
+setInterval(updateCountdown, 1000);
+updateCountdown();
+const reveals = document.querySelectorAll('.reveal');
+const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } }); }, { threshold: 0.15 });
+reveals.forEach(r => obs.observe(r));
+document.addEventListener('mousemove', e => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 10;
+  document.querySelector('.hero-content').style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+  document.querySelector('.ring-3d-container') && (document.querySelector('.ring-3d-container').style.transform = `translateY(-50%) translate(${x * -0.5}px, ${y * -0.3}px)`);
+});
+</script>
+</body>
+</html>
